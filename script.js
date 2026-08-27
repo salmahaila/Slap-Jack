@@ -1,5 +1,5 @@
 // Card and suit data used to build a standard 52-card deck.
-const suits=[{symbol:"â™ ",color:"black"},{symbol:"â™¥",color:"red"},{symbol:"â™¦",color:"red"},{symbol:"â™£",color:"black"}];
+const suits=[{symbol:"♠",color:"black"},{symbol:"♥",color:"red"},{symbol:"♦",color:"red"},{symbol:"♣",color:"black"}];
 const ranks=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
 const $=selector=>document.querySelector(selector);
 const startScreen=$("#start-screen"),gameScreen=$("#game-screen"),startButton=$("#start-button"),restartButton=$("#restart-button"),resultRestartButton=$("#result-restart-button"),playButton=$("#play-button"),slapButton=$("#slap-button"),playerCount=$("#player-count"),computerCount=$("#computer-count"),pileCount=$("#pile-count"),turnLabel=$("#turn-label"),playedCard=$("#played-card"),statusMessage=$("#status-message"),resultPanel=$("#result-panel"),resultTitle=$("#result-title"),resultMessage=$("#result-message");
@@ -22,7 +22,7 @@ function startGame(){
   const deck=shuffle(createDeck());
   playerPile=deck.slice(0,26); computerPile=deck.slice(26); centerPile=[]; currentTurn="player"; gameOver=false; waitingForSlap=false; lastPlayerToPlay=null;
   startScreen.classList.add("hidden"); gameScreen.classList.remove("hidden"); resultPanel.classList.add("hidden");
-  resetPlayedCard(); setStatus("Your turn â€” play your top card."); updateDisplay();
+  resetPlayedCard(); setStatus("Your turn — play your top card."); updateDisplay();
 }
 
 function resetPlayedCard(){playedCard.className="card empty-card";playedCard.innerHTML='<span class="empty-copy">No card yet</span>';}
@@ -39,7 +39,7 @@ function playCard(side){
   const card=pile.shift(); centerPile.push(card); lastPlayerToPlay=side; showCard(card);
   setStatus(`${side==="player"?"You":"Computer"} played ${card.rank}${card.suit}.`); updateDisplay();
   if(card.rank==="J") openSlapWindow();
-  else if(playerPile.length===0&&computerPile.length===0) turnTimer=setTimeout(()=>awardPile(lastPlayerToPlay,"Final card played â€” the pile goes to its owner."),700);
+  else if(playerPile.length===0&&computerPile.length===0) turnTimer=setTimeout(()=>awardPile(lastPlayerToPlay,"Final card played — the pile goes to its owner."),700);
   else {
     currentTurn=side==="player"?"computer":"player";
     updateDisplay();
@@ -53,8 +53,8 @@ function beginTurn(){
   if(currentTurn==="player"&&playerPile.length===0)currentTurn="computer";
   if(currentTurn==="computer"&&computerPile.length===0)currentTurn="player";
   updateDisplay();
-  if(currentTurn==="player")setStatus("Your turn â€” play your top card.");
-  else {setStatus("Computer is playingâ€¦");turnTimer=setTimeout(()=>playCard("computer"),700);}
+  if(currentTurn==="player")setStatus("Your turn — play your top card.");
+  else {setStatus("Computer is playing…");turnTimer=setTimeout(()=>playCard("computer"),700);}
 }
 
 function openSlapWindow(){
