@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slap Jack</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section id="start-screen" class="screen start-screen">
+      <p class="eyebrow">A quick card game</p><h1>Slap Jack</h1>
+      <p class="objective">Win all 52 cards by being the first to slap each Jack.</p>
+      <div class="instructions"><h2>How to play</h2><ol>
+        <li>You and the computer take turns playing a card.</li>
+        <li>When a Jack appears, hit <strong>SLAP!</strong> before the computer.</li>
+        <li>A correct slap wins the center pile. A wrong slap costs you a card.</li>
+      </ol></div>
+      <button id="start-button" class="primary-button">Start Game</button>
+    </section>
+
+    <section id="game-screen" class="screen game-screen hidden" aria-live="polite">
+      <header class="game-header"><div><p class="eyebrow">First to collect the deck wins</p><h1>Slap Jack</h1></div>
+        <button id="restart-button" class="secondary-button">Restart Game</button></header>
+      <div class="scoreboard">
+        <div class="score"><span>Computer</span><strong id="computer-count">26</strong><small>cards</small></div>
+        <div class="turn-panel"><span>Current turn</span><strong id="turn-label">Player</strong></div>
+        <div class="score"><span>You</span><strong id="player-count">26</strong><small>cards</small></div>
+      </div>
+      <div class="table">
+        <section class="hand-area" aria-label="Computer card area"><div class="card card-back small-card"><span>â™ </span></div><p>Computer pile</p></section>
+        <section class="center-area" aria-label="Center played pile"><p class="pile-label">Center pile: <strong id="pile-count">0</strong></p>
+          <div id="played-card" class="card empty-card"><span class="empty-copy">No card yet</span></div></section>
+        <section class="hand-area" aria-label="Player card area"><div class="card card-back small-card"><span>â™ </span></div><p>Your pile</p></section>
+      </div>
+      <div id="status-message" class="status-message" role="status">Your turn â€” play your top card.</div>
+      <div class="controls"><button id="play-button" class="primary-button">Play Card</button><button id="slap-button" class="slap-button" disabled>SLAP!</button></div>
+      <section id="result-panel" class="result-panel hidden"><p class="eyebrow">Game over</p><h2 id="result-title">You win!</h2>
+        <p id="result-message"></p><button id="result-restart-button" class="primary-button">Restart Game</button></section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
