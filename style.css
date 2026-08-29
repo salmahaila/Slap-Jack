@@ -4,12 +4,15 @@ body { min-height:100vh; margin:0; display:grid; place-items:center; padding:24p
 button { font:inherit; } .game-shell { width:min(920px,100%); }
 .screen { border:1px solid rgba(255,255,255,.17); border-radius:24px; background:rgba(4,38,27,.55); box-shadow:var(--shadow); }
 .hidden { display:none!important; }
-.start-screen { max-width:650px; margin:auto; padding:clamp(30px,7vw,64px); text-align:center; }
+.start-screen { position:fixed; inset:0; z-index:10; display:grid; place-items:center; padding:24px; background:rgba(2,25,18,.82); backdrop-filter:blur(5px); }
+.instruction-modal { width:min(620px,100%); padding:clamp(28px,6vw,52px); text-align:center; border:1px solid rgba(255,255,255,.2); border-radius:24px; background:#084b37; box-shadow:var(--shadow); }
+.instruction-modal h2 { margin:24px 0 8px; font-size:1.35rem; }
 h1,h2,p { margin-top:0; } h1 { margin-bottom:10px; font-family:Georgia,serif; font-size:clamp(3rem,8vw,5.5rem); line-height:.95; }
 .eyebrow { margin-bottom:10px; color:var(--gold); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
 .objective { font-size:1.12rem; line-height:1.6; }
-.instructions { margin:30px 0; padding:22px 26px; color:var(--ink); text-align:left; border-radius:16px; background:var(--cream); }
-.instructions h2 { margin-bottom:12px; font-size:1.1rem; } .instructions ol { margin:0; padding-left:22px; line-height:1.65; }
+.instructions { margin:24px 0; padding:22px 26px 22px 48px; color:var(--ink); text-align:left; border-radius:16px; background:var(--cream); line-height:1.55; }
+.instructions li + li { margin-top:8px; }
+.start-game-button { width:100%; min-height:60px; font-size:1.15rem; }
 .primary-button,.secondary-button,.slap-button { border:0; border-radius:12px; cursor:pointer; font-weight:850; transition:transform 120ms ease,filter 120ms ease,opacity 120ms ease; }
 .primary-button { padding:14px 28px; color:var(--ink); background:var(--gold); }
 .secondary-button { padding:10px 16px; color:var(--cream); border:1px solid rgba(255,255,255,.45); background:transparent; }
@@ -31,10 +34,12 @@ button:not(:disabled):hover { filter:brightness(1.08); transform:translateY(-2px
 .jack-card { animation:jack-pulse .55s ease-in-out infinite alternate; } @keyframes jack-pulse { to { box-shadow:0 0 0 9px rgba(244,201,93,.38),0 12px 25px rgba(0,0,0,.35); transform:scale(1.025); } }
 .status-message { min-height:54px; display:grid; place-items:center; margin:18px 0; padding:12px 18px; text-align:center; border-radius:12px; background:rgba(0,0,0,.2); }
 .status-message.good { color:#18341f; background:#bfe9c8; } .status-message.bad { color:#531717; background:#f3b9b9; } .status-message.alert { color:#342807; background:var(--gold); }
-.controls { display:flex; justify-content:center; gap:16px; } .controls button { min-width:170px; min-height:58px; }
-.slap-button { min-width:220px!important; color:white; font-size:1.45rem; letter-spacing:.08em; background:var(--red); box-shadow:0 7px 0 #812121; }
+.controls { display:flex; justify-content:center; gap:20px; } .controls button { min-width:230px; min-height:74px; }
+.play-button { font-size:1.3rem; box-shadow:0 7px 0 #ad8629; }
+.play-button:not(:disabled):active { transform:translateY(5px); box-shadow:0 2px 0 #ad8629; }
+.slap-button { min-width:250px!important; color:white; font-size:1.65rem; letter-spacing:.08em; background:var(--red); box-shadow:0 7px 0 #812121; }
 .slap-button:not(:disabled):active { transform:translateY(5px); box-shadow:0 2px 0 #812121; }
 .result-panel { position:absolute; inset:0; z-index:5; display:grid; place-content:center; padding:30px; text-align:center; background:rgba(4,30,22,.94); }
 .result-panel h2 { margin-bottom:10px; font-family:Georgia,serif; font-size:clamp(2.5rem,8vw,5rem); }
-@media (max-width:650px) { body { padding:10px; } .game-screen { padding:18px 12px; } .game-header .eyebrow { display:none; } .scoreboard { grid-template-columns:1fr 1fr; } .turn-panel { grid-column:1/-1; grid-row:2; } .table { min-height:250px; grid-template-columns:.75fr 1.4fr .75fr; gap:6px; padding:16px 7px; } .card { width:112px; } .small-card { width:62px; border-width:4px; } .hand-area p { font-size:.72rem; } .controls { flex-direction:column; } .controls button { width:100%; } }
+@media (max-width:650px) { body { padding:10px; } .start-screen { padding:12px; } .instruction-modal { padding:26px 20px; } .instructions { padding:18px 18px 18px 40px; } .game-screen { padding:18px 12px; } .game-header .eyebrow { display:none; } .scoreboard { grid-template-columns:1fr 1fr; } .turn-panel { grid-column:1/-1; grid-row:2; } .table { min-height:250px; grid-template-columns:.75fr 1.4fr .75fr; gap:6px; padding:16px 7px; } .card { width:112px; } .small-card { width:62px; border-width:4px; } .hand-area p { font-size:.72rem; } .controls { flex-direction:column; } .controls button { width:100%; min-height:68px; } }
 
